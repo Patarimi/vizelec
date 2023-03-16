@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "spice-draw"
+version = "0.1.0"
+description = "Generate drawing of schematic from an annotated spice file (based on schemdraw and Jinja2)."
+authors = ["Patarimi <38954040+Patarimi@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+
+[tool.poetry.scripts]
+spice2draw = "spice_draw:main.cli"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+schemdraw = "^0.15"
+typer = "^0.7.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+typer-cli = "^0.0.13"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
