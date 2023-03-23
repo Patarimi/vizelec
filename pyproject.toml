@@ -11,9 +11,11 @@ readme = "README.md"
 spice2draw = "spice_draw:main.cli"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 schemdraw = "^0.15"
 typer = "^0.7.0"
+networkx = "^3.0"
+matplotlib = "^3.7.1"
 
 
 [tool.poetry.group.dev.dependencies]

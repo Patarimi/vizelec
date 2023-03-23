@@ -1,6 +1,8 @@
 import typer
 import schemdraw
 import schemdraw.elements as elm
+import networkx as nx
+import matplotlib.pyplot as plt
 
 cli = typer.Typer()
 
@@ -8,6 +10,33 @@ mos_port = {"drain": 0, "gate": 1, "source": 2}
 
 
 @cli.command()
+def load_spice(schem: str):
+    netlist = nx.Graph()
+    with open(schem) as f:
+        for line in f.readlines():
+            if line[0] in ("*", "."):
+                pass
+            sep = line.split(" ")
+            if line[0] in ("M",):
+                add_cmp(netlist, sep[0], sep[1:4])
+    nx.draw_planar(netlist, with_labels=True)
+    plt.show()
+
+
+def add_cmp(graph: nx.Graph, cmp_name: str, ports_lst: list[str]):
+    """
+    update the graph with the new component
+    :param ports_lst: list of the nets connected to the component.
+    :param cmp_name: name of the component
+    :param graph: graph to be updated
+    :return:
+    """
+    graph.add_node(cmp_name, type="cmp", style="red")
+    for net in ports_lst:
+        graph.add_node(net, type="net", style="blue")
+        graph.add_edge(net, cmp_name)
+
+
 def main(schem: str):
     wires = dict()
     devices = dict()
@@ -35,20 +64,20 @@ def main(schem: str):
     next_net = "0"
     d += elm.GroundSignal()
     while next_net != "cc":
-        print(wires[next_net].keys())
-        dev_on_net = wires[next_net].pop(wires[next_net].keys()[0])
+        next_comp = list(wires[next_net].keys())[0]
+        dev_on_net = wires[next_net].pop(next_comp)
         print(dev_on_net)
-        if model[dev_on_net[1]] == "nmos":
-            d += elm.NFet(anchor=dev_on_net[2]).reverse().drop("drain")
+        if model[dev_on_net[0]] == "nmos":
+            d += elm.NFet(anchor=dev_on_net[1]).reverse().drop("drain")
         else:
-            d += elm.PFet(anchor=dev_on_net[2]).reverse().drop("source")
-        if dev_on_net[2] == "drain":
-            next_net = devices[dev_on_net[0]][2]
-            wires[next_net].pop(dev_on_net)
+            d += elm.PFet(anchor=dev_on_net[1]).reverse().drop("source")
+        if dev_on_net[1] == "drain":
+            next_net = devices[next_comp][2]
         else:
-            next_net = devices[dev_on_net[0]][0]
+            next_net = devices[next_comp][0]
+        wires[next_net].pop(next_comp)
     d += elm.Vdd()
-#    d.draw()
+    d.draw()
 
 
 """
