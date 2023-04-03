@@ -10,7 +10,11 @@ mos_port = {"drain": 0, "gate": 1, "source": 2}
 
 
 @cli.command()
-def load_spice(schem: str):
+def load_spice(schem: str) -> None:
+    """
+    Create a graph representation of the schematic given by schem.
+    :param schem: path to a spice file.
+    """
     netlist = nx.Graph()
     with open(schem) as f:
         for line in f.readlines():
@@ -19,17 +23,16 @@ def load_spice(schem: str):
             sep = line.split(" ")
             if line[0] in ("M",):
                 add_cmp(netlist, sep[0], sep[1:4])
-    nx.draw_planar(netlist, with_labels=True)
+    nx.draw_spring(netlist, with_labels=True)
     plt.show()
 
 
-def add_cmp(graph: nx.Graph, cmp_name: str, ports_lst: list[str]):
+def add_cmp(graph: nx.Graph, cmp_name: str, ports_lst: list[str]) -> None:
     """
     update the graph with the new component
     :param ports_lst: list of the nets connected to the component.
     :param cmp_name: name of the component
     :param graph: graph to be updated
-    :return:
     """
     graph.add_node(cmp_name, type="cmp", style="red")
     for net in ports_lst:
@@ -37,7 +40,11 @@ def add_cmp(graph: nx.Graph, cmp_name: str, ports_lst: list[str]):
         graph.add_edge(net, cmp_name)
 
 
-def main(schem: str):
+def main(schem: str) -> None:
+    """
+
+    :param schem: Path to the spice schematic
+    """
     wires = dict()
     devices = dict()
     model = dict()
