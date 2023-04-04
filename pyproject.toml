@@ -22,7 +22,6 @@ schemdraw = "^0.15"
 typer = "^0.7.0"
 networkx = "^3.0"
 matplotlib = "^3.7.1"
-pixie-python = "^4.3.0"
 
 
 [tool.poetry.group.dev.dependencies]

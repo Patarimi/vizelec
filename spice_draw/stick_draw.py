@@ -1,30 +1,40 @@
-import pixie
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 
 
-active = {"width": 10, "length_ext": 10}
-poly = {"length": 10, "width_ext": 10}
+active = {"y": 10, "dx": 15}
+poly = {"x": 5, "dy": 10}
 well = {"space": 10}
 margin = 10
 
 n_finger = 6
 n_well = 2
-mos = {"width": active["width"]+2*poly["width_ext"], "length":poly["length"]+2*active["length_ext"]}
+mos = {
+    "y": active["y"] + 2 * poly["dy"],
+    "x": n_finger * poly["x"] + (n_finger + 1) * active["dx"],
+}
 
-mos_tot = (n_finger*mos["length"], n_well*mos["width"])
-image = pixie.Image(mos_tot[0]+2*margin, mos_tot[1]+2*margin)
-image.fill(pixie.Color(1, 1, 1, 1))
+fig, ax = plt.subplots()
 
-active_p = pixie.Paint(pixie.SOLID_PAINT)
-active_p.color = pixie.Color(1, 1, 0, 1)
-
-active_n = pixie.Paint(pixie.SOLID_PAINT)
-active_n.color = pixie.Color(1, 0, 1, 1)
-
-ctx = image.new_context()
-ctx.fill_style = active_p
-ctx.fill_rect(margin+poly["width_ext"], margin, mos_tot[0], active["width"])
-
-ctx.fill_style = active_n
-ctx.fill_rect(margin+mos["width"]+well["space"], margin+active["width"], mos_tot[0], active["width"])
-
-image.write_file("test.png")
+ax.add_patch(
+    Rectangle((0, poly["dy"]), mos["x"], active["y"], facecolor="green", fill=True)
+)
+ax.add_patch(
+    Rectangle(
+        (0, mos["y"] + well["space"] + poly["dy"]),
+        mos["x"],
+        active["y"],
+        facecolor="yellow",
+        fill=True,
+    )
+)
+for i in range(n_finger):
+    ax.add_patch(
+        Rectangle(((i+1)*active["dx"]+i*poly["x"], 0), poly["x"], mos["y"], facecolor="red", fill=True)
+    )
+    ax.add_patch(
+        Rectangle(((i+1)*active["dx"]+i*poly["x"], mos["y"] + well["space"]), poly["x"], mos["y"], facecolor="red", fill=True)
+    )
+plt.xlim(-margin, mos["x"] + margin)
+plt.ylim(-margin, n_well * mos["y"] + (n_well - 1) * well["space"] + margin)
+plt.savefig('test.png')
