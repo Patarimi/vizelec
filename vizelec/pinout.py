@@ -10,7 +10,7 @@ map_pin = {"W": "left", "E": "right", "S": "bott", "N": "top"}
 @app.command("show")
 def show_pin_order(conf_file: str):
     pin_list = read_conf(conf_file)
-    pins = (elm.IcPin(name=name, side=side) for name, side in pin_list)
+    pins = (elm.IcPin(name=name, side=side, rotation=0 if side in ("left", "right") else 90) for name, side in pin_list)
     schem = sd.Drawing()
     schem += elm.Ic(pins=pins)
     schem.draw()

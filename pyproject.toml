@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vizelec"
-version = "0.1.0"
+version = "0.1.2"
 description = "Generate drawing and graph of schematic from various files."
 authors = ["Patarimi <38954040+Patarimi@users.noreply.github.com>"]
 license = "MIT"
@@ -18,7 +18,7 @@ increment   = ""
 release     = ["doc", "publish"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 schemdraw = "^0.16"
 typer = "^0.7.0"
 networkx = "^3.0"
