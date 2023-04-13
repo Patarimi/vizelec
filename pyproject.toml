@@ -1,24 +1,25 @@
 [tool.poetry]
-name = "spice-draw"
+name = "vizelec"
 version = "0.1.0"
-description = "Generate drawing of schematic from an annotated spice file (based on schemdraw and Jinja2)."
+description = "Generate drawing and graph of schematic from various files."
 authors = ["Patarimi <38954040+Patarimi@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
 
 
 [tool.poetry.scripts]
-spice2draw = "spice_draw:main.cli"
+vizelec = "vizelec:main.cli"
 
 [tool.poe.tasks]
-doc         = "typer spice_draw.main utils docs --name spice2draw --output README.md"
+doc         = "typer vizelec.main utils docs --name vizelec --output README.md"
 show-update = "poetry show -l -o"
-lock-req    = "poetry export -o requirements.txt --without-hashes"
-update4commit = ["doc", "lock-req"]
+publish     = "poetry publish --build --username __token__ --password $PYPI_TOKEN"
+increment   = ""
+release     = ["doc", "publish"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-schemdraw = "^0.15"
+schemdraw = "^0.16"
 typer = "^0.7.0"
 networkx = "^3.0"
 matplotlib = "^3.7.1"

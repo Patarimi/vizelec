@@ -3,7 +3,7 @@ import schemdraw
 import schemdraw.elements as elm
 import networkx as nx
 import matplotlib.pyplot as plt
-from spice_draw.pinout import pinout
+from vizelec.pinout import pinout
 
 cli = typer.Typer()
 cli.add_typer(pinout, name="pinout")
