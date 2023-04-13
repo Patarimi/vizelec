@@ -3,13 +3,15 @@ import schemdraw
 import schemdraw.elements as elm
 import networkx as nx
 import matplotlib.pyplot as plt
+from spice_draw.pinout import pinout
 
 cli = typer.Typer()
+cli.add_typer(pinout, name="pinout")
 
 mos_port = {"drain": 0, "gate": 1, "source": 2}
 
 
-@cli.command()
+@cli.command("schem")
 def load_spice(schem: str) -> None:
     """
     Create a graph representation of the schematic given by schem.
