@@ -1,0 +1,99 @@
+start: description*
+
+?description: module
+
+?module: "module" identifier list_of_parameters? list_of_ports? ";" module_item* "endmodule"
+
+?list_of_parameters: "#(" parameter ("," parameter)* ")"
+?parameter: "parameter" identifier "=" number
+
+list_of_ports: "(" port ("," port)* ")"
+?port: direction type? range? identifier
+    | named_port_connection
+direction: "input" -> input
+    | "output" -> output
+type: "wire" -> wire
+    | "reg" -> reg
+
+?module_item: input_declaration
+    | output_declaration
+    | net_declaration
+    | continuous_assign
+    | module_instantiation
+    | block
+
+?block: "always" /.+/+ "end"
+
+input_declaration: "input" range? list_of_variables ";"
+
+output_declaration: "output" range? list_of_variables ";"
+
+net_declaration: "wire" range? list_of_variables ";"
+
+continuous_assign: "assign" list_of_assignments ";"
+
+list_of_assignments: assignment ("," assignment)*
+
+assignment: lvalue "=" expression
+
+?lvalue: identifier
+    | identifier_indexed
+    | identifier_sliced
+    | concatenation
+
+concatenation: "{" expression ("," expression)* "}"
+
+?expression: identifier
+    | identifier_indexed
+    | identifier_sliced
+    | concatenation
+    | number
+    | equation
+
+identifier_indexed: identifier "[" number "]"
+identifier_sliced: identifier range
+equation: expression (operator expression)*
+operator: "-"
+
+module_instantiation: identifier module_instance ("," module_instance)* ";"
+
+module_instance: identifier "(" list_of_module_connections? ")"
+
+list_of_module_connections: module_port_connection ("," module_port_connection)*
+    | named_port_connection ("," named_port_connection)*
+
+module_port_connection: expression
+
+named_port_connection: "." identifier "(" expression ")"
+
+identifier: CNAME
+
+?range: "[" expression ":" expression "]"
+
+?list_of_variables: identifier ("," identifier)*
+
+string: ESCAPED_STRING
+
+number: "'"? INT? base? INT
+
+base: BASE
+BASE: "'b" | "'B" | "'h" | "'H" | "'o" | "'O'" | "'d" | "'D"
+
+COMMENT_SLASH: /\/\*(\*(?!\/)|[^*])*\*\//
+COMMENT_BRACE: /\(\*(\*(?!\))|[^*])*\*\)/
+
+NEWLINE: /\\?\r?\n/
+
+%import common.WORD
+%import common.ESCAPED_STRING
+%import common.CNAME
+//%import common.SIGNED_NUMBER
+%import common.INT
+//%import common.SIGNED_INT
+%import common.WS
+%import common.HEXDIGIT
+
+%ignore WS
+%ignore COMMENT_SLASH
+%ignore COMMENT_BRACE
+%ignore NEWLINE
