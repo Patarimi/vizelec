@@ -15,7 +15,7 @@ $ vizelec [OPTIONS] COMMAND [ARGS]...
 **Commands**:
 
 * `pinout`
-* `schem`: Create a graph representation of the...
+* `spice`
 
 ## `vizelec pinout`
 
@@ -49,7 +49,23 @@ $ vizelec pinout show [OPTIONS] CONF_FILE
 
 * `--help`: Show this message and exit.
 
-## `vizelec schem`
+## `vizelec spice`
+
+**Usage**:
+
+```console
+$ vizelec spice [OPTIONS] COMMAND [ARGS]...
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+**Commands**:
+
+* `load`: Create a graph representation of the...
+
+### `vizelec spice load`
 
 Create a graph representation of the schematic given by schem.
 :param schem: path to a spice file.
@@ -57,7 +73,7 @@ Create a graph representation of the schematic given by schem.
 **Usage**:
 
 ```console
-$ vizelec schem [OPTIONS] SCHEM
+$ vizelec spice load [OPTIONS] SCHEM
 ```
 
 **Arguments**:

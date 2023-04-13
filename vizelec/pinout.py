@@ -2,12 +2,12 @@ import typer
 import schemdraw as sd
 import schemdraw.elements as elm
 
-pinout = typer.Typer()
+app = typer.Typer()
 
 map_pin = {"W": "left", "E": "right", "S": "bott", "N": "top"}
 
 
-@pinout.command("show")
+@app.command("show")
 def show_pin_order(conf_file: str):
     pin_list = read_conf(conf_file)
     pins = (elm.IcPin(name=name, side=side) for name, side in pin_list)
