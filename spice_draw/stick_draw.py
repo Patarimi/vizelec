@@ -2,39 +2,41 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
 
-active = {"y": 10, "dx": 15}
-poly = {"x": 5, "dy": 10}
-well = {"space": 10}
+well = {"space": 10,
+        "n": 2}
 margin = 10
 
-n_finger = 6
-n_well = 2
-mos = {
-    "y": active["y"] + 2 * poly["dy"],
-    "x": n_finger * poly["x"] + (n_finger + 1) * active["dx"],
-}
+mos_d = {"y": 15, "x": 5, "finger": 6, "poly": {"ext": 10}, "active": {"ext": 10}}
+
+
+def draw_mos(axis, mos: dict, offset: tuple[int, int] = (0, 0), doping: str = "n"):
+    color = "green" if doping == "n" else "yellow"
+    axis.add_patch(
+        Rectangle(
+            (offset[0], offset[1] + mos["poly"]["ext"]),
+            mos["finger"] * mos["x"] + (mos["finger"]+1)*mos["active"]["ext"],
+            mos["y"],
+            facecolor=color,
+            fill="True",
+        )
+    )
+    for i in range(mos["finger"]):
+        ax.add_patch(
+            Rectangle(
+                (offset[0] + (i + 1) * mos["active"]["ext"] + i * mos["x"], offset[1]),
+                mos["x"],
+                2*mos["poly"]["ext"]+mos["y"],
+                facecolor="red",
+                fill=True,
+            )
+        )
+
 
 fig, ax = plt.subplots()
+draw_mos(ax, mos_d)
+draw_mos(ax, mos_d, (0, well["space"]+mos_d["y"]+2*mos_d["poly"]["ext"]), doping="p")
 
-ax.add_patch(
-    Rectangle((0, poly["dy"]), mos["x"], active["y"], facecolor="green", fill=True)
-)
-ax.add_patch(
-    Rectangle(
-        (0, mos["y"] + well["space"] + poly["dy"]),
-        mos["x"],
-        active["y"],
-        facecolor="yellow",
-        fill=True,
-    )
-)
-for i in range(n_finger):
-    ax.add_patch(
-        Rectangle(((i+1)*active["dx"]+i*poly["x"], 0), poly["x"], mos["y"], facecolor="red", fill=True)
-    )
-    ax.add_patch(
-        Rectangle(((i+1)*active["dx"]+i*poly["x"], mos["y"] + well["space"]), poly["x"], mos["y"], facecolor="red", fill=True)
-    )
-plt.xlim(-margin, mos["x"] + margin)
-plt.ylim(-margin, n_well * mos["y"] + (n_well - 1) * well["space"] + margin)
-plt.savefig('test.png')
+plt.xlim(-margin, mos_d["finger"]*mos_d["x"] + (mos_d["finger"]+1)*mos_d["active"]["ext"] + margin)
+plt.ylim(-margin, well["n"] * (mos_d["y"]+2*mos_d["poly"]["ext"]) + (well["n"] - 1) * well["space"] + margin)
+plt.axis("off")
+plt.savefig("test.png")
