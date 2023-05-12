@@ -85,26 +85,3 @@ def main(schem: str) -> None:
         wires[next_net].pop(next_comp)
     d += elm.Vdd()
     d.draw()
-
-
-"""
-    d = schemdraw.Drawing()
-    d += elm.Dot(open=True)
-    d += elm.Line(length=1)
-    d.push()
-    d += elm.Line(length=1).up()
-    d += (M1 := elm.PFet(anchor="gate", theta=180)).flip()
-    d += elm.Vdd(at=M1.source)
-    d.pop()
-    d += elm.Line(length=1).down()
-    d += (M2 := elm.NFet(anchor="gate", theta=180).flip())
-    d += elm.GroundSignal(at=M2.source)
-    d += elm.Line(at=M2.drain, length=1).up()
-    d.push()
-    d += elm.Line(to=M1.drain, length=1)
-    d.pop()
-    d += elm.Line(length=1).right()
-    d += elm.Dot(open=True)
-
-    d.draw()
-"""
