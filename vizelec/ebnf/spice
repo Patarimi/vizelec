@@ -1,0 +1,5 @@
+Component?: Comp_type Name
+
+Comp_type: "V" | "M" | "B" | "C"
+
+COMMENT: /./
