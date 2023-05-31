@@ -9,4 +9,3 @@ def test_verilog():
 def test_spice():
     tree = ps.parse("./tests/inv.cir")
     print(tree.pretty())
-
