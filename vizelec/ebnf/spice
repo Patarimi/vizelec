@@ -1,5 +1,22 @@
-Component?: Comp_type Name
+start: (component | instr)+
 
-Comp_type: "V" | "M" | "B" | "C"
+component: "V" NAME SEP NET SEP NET SEP (TYPE SEP?)+ -> v_source
+    |"M" NAME SEP NET SEP NET SEP NET SEP NET SEP MODEL (SEP MODEL_PARAMETER)+ SEP -> mos
 
-COMMENT: /./
+instr: ".model" SEP NAME SEP NAME SEP (MODEL_PARAMETER SEP?)+ -> model
+
+SEP: (" "|"\n")+
+NAME: (LETTER|INT)+
+NET: (INT|LETTER)+
+VALUE: (INT|".")+ UNIT?
+UNIT: ("n"|"u")
+TYPE: VALUE
+    |"dc" SEP VALUE
+    |"pulse" SEP "(" (VALUE SEP?)+ ")"
+MODEL: NAME
+MODEL_PARAMETER: NAME "=" VALUE
+COMMENT: ("i"|"*") (" " CMT_NAME)+ SEP+
+CMT_NAME: (LETTER|"."|"-"|"("|")"|INT)+
+%ignore COMMENT
+%import common.LETTER
+%import common.INT
