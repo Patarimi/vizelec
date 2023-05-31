@@ -3,6 +3,7 @@ import schemdraw
 import schemdraw.elements as elm
 import networkx as nx
 import matplotlib.pyplot as plt
+from .parse import parse
 
 app = typer.Typer()
 
@@ -16,13 +17,13 @@ def load_spice(schem: str) -> None:
     :param schem: path to a spice file.
     """
     netlist = nx.Graph()
-    with open(schem) as f:
-        for line in f.readlines():
-            if line[0] in ("*", "."):
-                pass
-            sep = line.split(" ")
-            if line[0] in ("M",):
-                add_cmp(netlist, sep[0], sep[1:4])
+    tree = parse(schem)
+    for thing in tree.children:
+        if thing.data in ("model", "v_source"):
+            continue
+        name = thing.children[0]
+        nets = thing.children[2:7:2]
+        add_cmp(netlist, name, nets)
     nx.draw_spring(netlist, with_labels=True)
     plt.show()
 

@@ -16,7 +16,6 @@ def parse(file: str):
         verilog_parser = Lark(f)
     with open(file) as f:
         t = verilog_parser.parse(f.read())
-    print(VerilogTransform().transform(t))
     return t
 
 
