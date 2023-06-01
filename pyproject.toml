@@ -9,6 +9,7 @@ readme = "README.md"
 
 [tool.poetry.scripts]
 vizelec = "vizelec:main.cli"
+canvas = "vizelec:stick_draw.app"
 
 [tool.poe.tasks]
 doc         = "typer vizelec.main utils docs --name vizelec --output README.md"
