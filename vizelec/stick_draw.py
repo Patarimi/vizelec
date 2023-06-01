@@ -1,39 +1,44 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 import typer
+from typing import Tuple
 
 
 app = typer.Typer()
 
-margin = 10
+margin = 1
 
-rail = {"y": 5, "space": 3}
+rail = {"y": 1, "space": 0.5}
 
 
-def draw_mos(axis, mos: dict, offset: tuple[int, int] = (0, 0), doping: str = "n"):
-    color = "green" if doping == "n" else "yellow"
-    axis.add_patch(
-        Rectangle(
+class Canvas:
+    __a: plt.Axes
+
+    def __init__(self):
+        fig, self.__a = plt.subplots()
+
+    def new_rect(self, origin: Tuple[float, float], width, height, color):
+        self.__a.add_patch(
+            Rectangle(origin, width, height, facecolor=color, fill="True")
+        )
+
+    def draw_mos(self, mos: dict, offset: tuple[float, float] = (0, 0), doping: str = "n"):
+        color = "green" if doping == "n" else "yellow"
+        self.new_rect(
             (offset[0], offset[1] + mos["poly"]["ext"]),
             mos["finger"] * mos["x"] + (mos["finger"] + 1) * mos["active"]["ext"],
             mos["y"],
-            facecolor=color,
-            fill="True",
+            color,
         )
-    )
-    for i in range(mos["finger"]):
-        axis.add_patch(
-            Rectangle(
+        for i in range(mos["finger"]):
+            self.new_rect(
                 (offset[0] + (i + 1) * mos["active"]["ext"] + i * mos["x"], offset[1]),
                 mos["x"],
                 2 * mos["poly"]["ext"] + mos["y"],
-                facecolor="red",
-                fill=True,
+                color="red",
             )
-        )
 
-    axis.add_patch(
-        Rectangle(
+        self.new_rect(
             (
                 offset[0],
                 offset[1] - rail["y"] - rail["space"]
@@ -42,45 +47,47 @@ def draw_mos(axis, mos: dict, offset: tuple[int, int] = (0, 0), doping: str = "n
             ),
             mos["finger"] * mos["x"] + (mos["finger"] + 1) * mos["active"]["ext"],
             rail["y"],
-            facecolor="blue",
-            fill=True,
+            color="blue",
         )
-    )
+
+    def add_wire(self, x: float | Tuple[float, float], y: float | Tuple[float, float]):
+        plt.plot((x, x), y)
 
 
 @app.command()
 def draw_canvas(n_well_n, n_well_p, finger):
-    fig, ax = plt.subplots()
+    canvas = Canvas()
     mos_d = {
-        "y": 15,
-        "x": 5,
+        "y": 1,
+        "x": 0.5,
         "finger": finger,
-        "poly": {"ext": 10},
-        "active": {"ext": 10},
+        "poly": {"ext": 0.5},
+        "active": {"ext": 1.5},
     }
-    well = {"space": 10, "n": n_well_n + n_well_p}  # TODO: manage well number
-    draw_mos(ax, mos_d)
-    draw_mos(
-        ax,
+    well = {"space": 1, "n": n_well_n + n_well_p}  # TODO: manage well number
+    canvas.draw_mos(mos_d, (0.25, 1))
+    canvas.draw_mos(
         mos_d,
-        (0, well["space"] + mos_d["y"] + 2 * mos_d["poly"]["ext"]),
+        (0.25, well["space"] + mos_d["y"] + 2 * mos_d["poly"]["ext"]+1),
         doping="p",
     )
     plt.xlim(
-        -margin,
+        -margin+0.25,
         mos_d["finger"] * mos_d["x"]
         + (mos_d["finger"] + 1) * mos_d["active"]["ext"]
-        + margin,
+        + margin+0.25,
     )
     plt.ylim(
-        -margin,
+        -margin+1,
         well["n"] * (mos_d["y"] + 2 * mos_d["poly"]["ext"])
         + (well["n"] - 1) * well["space"]
-        + margin,
+        + margin+1,
     )
-    plt.axis("off")
-    plt.show(block=False)
-    plt.waitforbuttonpress()
+    canvas.add_wire(2, (4, 6))
+    canvas.add_wire(1, (0, 2))
+    plt.axis("on")
+    plt.grid(visible=True)
+    plt.show()
 
 
 @app.command("main")
