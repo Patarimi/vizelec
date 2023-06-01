@@ -51,40 +51,51 @@ class Canvas:
         )
 
     def add_wire(self, x: float | Tuple[float, float], y: float | Tuple[float, float]):
-        plt.plot((x, x), y)
+        if type(y) is tuple:
+            plt.plot((x, x), y, color="blue")
+        else:
+            plt.plot(x, (y, y), color="lightblue")
 
 
 @app.command()
-def draw_canvas(n_well_n, n_well_p, finger):
+def draw_canvas(n_well_n, n_well_p, finger, h_well_n, h_well_p):
     canvas = Canvas()
-    mos_d = {
-        "y": 1,
+    nmos = {
+        "y": h_well_n,
+        "x": 0.5,
+        "finger": finger,
+        "poly": {"ext": 0.5},
+        "active": {"ext": 1.5},
+    }
+    pmos = {
+        "y": h_well_p,
         "x": 0.5,
         "finger": finger,
         "poly": {"ext": 0.5},
         "active": {"ext": 1.5},
     }
     well = {"space": 1, "n": n_well_n + n_well_p}  # TODO: manage well number
-    canvas.draw_mos(mos_d, (0.25, 1))
+    canvas.draw_mos(nmos, (0.25, 1))
     canvas.draw_mos(
-        mos_d,
-        (0.25, well["space"] + mos_d["y"] + 2 * mos_d["poly"]["ext"]+1),
+        pmos,
+        (0.25, well["space"] + nmos["y"] + 2 * nmos["poly"]["ext"] + 1),
         doping="p",
     )
     plt.xlim(
         -margin+0.25,
-        mos_d["finger"] * mos_d["x"]
-        + (mos_d["finger"] + 1) * mos_d["active"]["ext"]
-        + margin+0.25,
+        nmos["finger"] * nmos["x"]
+        + (nmos["finger"] + 1) * nmos["active"]["ext"]
+        + margin + 0.25,
     )
     plt.ylim(
         -margin+1,
-        well["n"] * (mos_d["y"] + 2 * mos_d["poly"]["ext"])
+        well["n"] * (nmos["y"] + 2 * nmos["poly"]["ext"])
         + (well["n"] - 1) * well["space"]
         + margin+1,
     )
     canvas.add_wire(2, (4, 6))
     canvas.add_wire(1, (0, 2))
+    canvas.add_wire((5, 7), 4)
     plt.axis("on")
     plt.grid(visible=True)
     plt.show()
@@ -94,5 +105,7 @@ def draw_canvas(n_well_n, n_well_p, finger):
 def flow():
     finger = typer.prompt("maximum finger number", type=int)
     n_well_n = typer.prompt("number of n-well rows", type=int)
+    h_well_n = typer.prompt("number of track per well rows", type=int)
     n_well_p = typer.prompt("number of p-well rows", type=int)
-    draw_canvas(n_well_n, n_well_p, finger)
+    h_well_p = typer.prompt("number of track per well rows", type=int)
+    draw_canvas(n_well_n, n_well_p, finger, h_well_n, h_well_p)
