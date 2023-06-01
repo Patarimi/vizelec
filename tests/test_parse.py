@@ -8,4 +8,5 @@ def test_verilog():
 
 def test_spice():
     tree = ps.parse("./tests/inv.cir")
-    print(tree.pretty())
+    assert tree.children[0].data == "v_source"
+    assert tree.children[1].children[0] == "in"
