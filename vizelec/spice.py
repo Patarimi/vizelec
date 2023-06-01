@@ -11,10 +11,11 @@ mos_port = {"drain": 0, "gate": 1, "source": 2}
 
 
 @app.command("load")
-def load_spice(schem: str) -> None:
+def load_spice(schem: str, show: bool = True) -> None:
     """
     Create a graph representation of the schematic given by schem.
     :param schem: path to a spice file.
+    :param show: display the netlist as a graph
     """
     netlist = nx.Graph()
     tree = parse(schem)
@@ -25,7 +26,8 @@ def load_spice(schem: str) -> None:
         nets = thing.children[2:7:2]
         add_cmp(netlist, name, nets)
     nx.draw_spring(netlist, with_labels=True)
-    plt.show()
+    if show:
+        plt.show()
 
 
 def add_cmp(graph: nx.Graph, cmp_name: str, ports_lst: list[str]) -> None:
