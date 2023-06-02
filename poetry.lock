@@ -42,7 +42,6 @@ packaging = ">=22.0"
 pathspec = ">=0.9.0"
 platformdirs = ">=2"
 tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
-typing-extensions = {version = ">=3.10.0.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
 colorama = ["colorama (>=0.4.3)"]
@@ -204,25 +203,6 @@ type1 = ["xattr"]
 ufo = ["fs (>=2.2.0,<3)"]
 unicode = ["unicodedata2 (>=15.0.0)"]
 woff = ["brotli (>=1.0.1)", "brotlicffi (>=0.8.0)", "zopfli (>=0.1.4)"]
-
-[[package]]
-name = "importlib-resources"
-version = "5.12.0"
-description = "Read resources from Python packages"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "importlib_resources-5.12.0-py3-none-any.whl", hash = "sha256:7b1deeebbf351c7578e09bf2f63fa2ce8b5ffec296e0d349139d43cca061a81a"},
-    {file = "importlib_resources-5.12.0.tar.gz", hash = "sha256:4be82589bf5c1d7999aedf2a45159d10cb3ca4f19b2271f8792bc8e6da7b22f6"},
-]
-
-[package.dependencies]
-zipp = {version = ">=3.1.0", markers = "python_version < \"3.10\""}
-
-[package.extras]
-docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
-testing = ["flake8 (<5)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)"]
 
 [[package]]
 name = "iniconfig"
@@ -411,7 +391,6 @@ files = [
 contourpy = ">=1.0.1"
 cycler = ">=0.10"
 fonttools = ">=4.22.0"
-importlib-resources = {version = ">=3.2.0", markers = "python_version < \"3.10\""}
 kiwisolver = ">=1.0.1"
 numpy = ">=1.20"
 packaging = ">=20.0"
@@ -737,14 +716,14 @@ six = ">=1.5"
 
 [[package]]
 name = "rich"
-version = "13.3.5"
+version = "13.4.1"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 category = "main"
 optional = false
 python-versions = ">=3.7.0"
 files = [
-    {file = "rich-13.3.5-py3-none-any.whl", hash = "sha256:69cdf53799e63f38b95b9bf9c875f8c90e78dd62b2f00c13a911c7a3b9fa4704"},
-    {file = "rich-13.3.5.tar.gz", hash = "sha256:2d11b9b8dd03868f09b4fffadc84a6a8cda574e40dc90821bd845720ebb8e89c"},
+    {file = "rich-13.4.1-py3-none-any.whl", hash = "sha256:d204aadb50b936bf6b1a695385429d192bc1fdaf3e8b907e8e26f4c4e4b5bf75"},
+    {file = "rich-13.4.1.tar.gz", hash = "sha256:76f6b65ea7e5c5d924ba80e322231d7cb5b5981aa60bfc1e694f1bc097fe6fe1"},
 ]
 
 [package.dependencies]
@@ -772,14 +751,14 @@ svgmath = ["latex2mathml", "ziafont (>=0.4)", "ziamath (>=0.6)"]
 
 [[package]]
 name = "shellingham"
-version = "1.4.0"
+version = "1.5.0.post1"
 description = "Tool to Detect Surrounding Shell"
 category = "dev"
 optional = false
-python-versions = "!=3.0,!=3.1,!=3.2,!=3.3,>=2.6"
+python-versions = ">=3.7"
 files = [
-    {file = "shellingham-1.4.0-py2.py3-none-any.whl", hash = "sha256:536b67a0697f2e4af32ab176c00a50ac2899c5a05e0d8e2dadac8e58888283f9"},
-    {file = "shellingham-1.4.0.tar.gz", hash = "sha256:4855c2458d6904829bd34c299f11fdeed7cfefbf8a2c522e4caea6cd76b3171e"},
+    {file = "shellingham-1.5.0.post1-py2.py3-none-any.whl", hash = "sha256:368bf8c00754fd4f55afb7bbb86e272df77e4dc76ac29dbcbb81a59e9fc15744"},
+    {file = "shellingham-1.5.0.post1.tar.gz", hash = "sha256:823bc5fb5c34d60f285b624e7264f4dda254bc803a3774a147bf99c0e3004a28"},
 ]
 
 [[package]]
@@ -808,24 +787,25 @@ files = [
 
 [[package]]
 name = "typer"
-version = "0.7.0"
+version = "0.9.0"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
 category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "typer-0.7.0-py3-none-any.whl", hash = "sha256:b5e704f4e48ec263de1c0b3a2387cd405a13767d2f907f44c1a08cbad96f606d"},
-    {file = "typer-0.7.0.tar.gz", hash = "sha256:ff797846578a9f2a201b53442aedeb543319466870fbe1c701eab66dd7681165"},
+    {file = "typer-0.9.0-py3-none-any.whl", hash = "sha256:5d96d986a21493606a358cae4461bd8cdf83cbf33a5aa950ae629ca3b51467ee"},
+    {file = "typer-0.9.0.tar.gz", hash = "sha256:50922fd79aea2f4751a8e0408ff10d2662bd0c8bbfa84755a699f3bada2978b2"},
 ]
 
 [package.dependencies]
 click = ">=7.1.1,<9.0.0"
+typing-extensions = ">=3.7.4.3"
 
 [package.extras]
-all = ["colorama (>=0.4.3,<0.5.0)", "rich (>=10.11.0,<13.0.0)", "shellingham (>=1.3.0,<2.0.0)"]
+all = ["colorama (>=0.4.3,<0.5.0)", "rich (>=10.11.0,<14.0.0)", "shellingham (>=1.3.0,<2.0.0)"]
 dev = ["autoflake (>=1.3.1,<2.0.0)", "flake8 (>=3.8.3,<4.0.0)", "pre-commit (>=2.17.0,<3.0.0)"]
 doc = ["cairosvg (>=2.5.2,<3.0.0)", "mdx-include (>=1.4.1,<2.0.0)", "mkdocs (>=1.1.2,<2.0.0)", "mkdocs-material (>=8.1.4,<9.0.0)", "pillow (>=9.3.0,<10.0.0)"]
-test = ["black (>=22.3.0,<23.0.0)", "coverage (>=6.2,<7.0)", "isort (>=5.0.6,<6.0.0)", "mypy (==0.910)", "pytest (>=4.4.0,<8.0.0)", "pytest-cov (>=2.10.0,<5.0.0)", "pytest-sugar (>=0.9.4,<0.10.0)", "pytest-xdist (>=1.32.0,<4.0.0)", "rich (>=10.11.0,<13.0.0)", "shellingham (>=1.3.0,<2.0.0)"]
+test = ["black (>=22.3.0,<23.0.0)", "coverage (>=6.2,<7.0)", "isort (>=5.0.6,<6.0.0)", "mypy (==0.910)", "pytest (>=4.4.0,<8.0.0)", "pytest-cov (>=2.10.0,<5.0.0)", "pytest-sugar (>=0.9.4,<0.10.0)", "pytest-xdist (>=1.32.0,<4.0.0)", "rich (>=10.11.0,<14.0.0)", "shellingham (>=1.3.0,<2.0.0)"]
 
 [[package]]
 name = "typer-cli"
@@ -834,45 +814,33 @@ description = "Run Typer scripts with completion, without having to create a pac
 category = "dev"
 optional = false
 python-versions = ">=3.7"
-files = [
-    {file = "typer_cli-0.0.13-py3-none-any.whl", hash = "sha256:5ae0f99dce8f8f9669137a2c98eb42485cd4412e0ec225c8eb29ce8ac3378731"},
-    {file = "typer_cli-0.0.13.tar.gz", hash = "sha256:f5b85764e56fb3fe835ed008ad5bc7db4961f7bcce1f1c1698ac46b6c5d9b86f"},
-]
+files = []
+develop = false
 
 [package.dependencies]
 colorama = ">=0.4.3,<=0.5.0"
-shellingham = ">=1.3.2,<=1.4.0"
-typer = ">=0.4.0,<=0.7.0"
+shellingham = ">=1.3.2,<=1.5.0"
+typer = ">=0.4.0,<=0.9.0"
+
+[package.source]
+type = "git"
+url = "https://github.com/Patarimi/typer-cli.git"
+reference = "HEAD"
+resolved_reference = "b7c1d567e522f64db30080eb48e71fc86c958b94"
 
 [[package]]
 name = "typing-extensions"
-version = "4.5.0"
+version = "4.6.3"
 description = "Backported and Experimental Type Hints for Python 3.7+"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},
-    {file = "typing_extensions-4.5.0.tar.gz", hash = "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb"},
-]
-
-[[package]]
-name = "zipp"
-version = "3.15.0"
-description = "Backport of pathlib-compatible object wrapper for zip files"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "zipp-3.15.0-py3-none-any.whl", hash = "sha256:48904fc76a60e542af151aded95726c1a5c34ed43ab4134b597665c86d7ad556"},
-    {file = "zipp-3.15.0.tar.gz", hash = "sha256:112929ad649da941c23de50f356a2b5570c954b65150642bccdd66bf194d224b"},
+    {file = "typing_extensions-4.6.3-py3-none-any.whl", hash = "sha256:88a4153d8505aabbb4e13aacb7c486c2b4a33ca3b3f807914a9b4c844c471c26"},
+    {file = "typing_extensions-4.6.3.tar.gz", hash = "sha256:d91d5919357fe7f681a9f2b5b4cb2a5f1ef0a1e9f59c4d8ff0d3491e05c0ffd5"},
 ]
-
-[package.extras]
-docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
-testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more-itertools", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.9"
-content-hash = "e565b613cd1fade10fa85d12c0d210dfa1f4670db69f341e18dd3a1d22bd1141"
+python-versions = "^3.10"
+content-hash = "1222ad5cd5519f858388a442eda7a48829b8f8c260cd7335a16778a260aa06de"
