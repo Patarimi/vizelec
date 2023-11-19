@@ -69,6 +69,7 @@ $ vizelec spice [OPTIONS] COMMAND [ARGS]...
 
 Create a graph representation of the schematic given by schem.
 :param schem: path to a spice file.
+:param show: display the netlist as a graph
 
 **Usage**:
 
@@ -82,4 +83,5 @@ $ vizelec spice load [OPTIONS] SCHEM
 
 **Options**:
 
+* `--show / --no-show`: [default: show]
 * `--help`: Show this message and exit.
