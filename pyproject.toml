@@ -20,7 +20,7 @@ release     = ["doc", "publish"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-schemdraw = "^0.16"
+schemdraw = "^0.17"
 typer = "^0.9.0"
 networkx = "^3.0"
 matplotlib = "^3.7.1"
@@ -31,7 +31,7 @@ rich = "^13.4.1"
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
 typer-cli = {git = "https://github.com/Patarimi/typer-cli.git"}
-poethepoet = "^0.19.0"
+poethepoet = "^0.24.0"
 pytest = "^7.3.0"
 
 [build-system]
