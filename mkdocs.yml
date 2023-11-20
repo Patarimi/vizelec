@@ -1,0 +1,11 @@
+site_name: VizElec
+theme:
+    name: material
+
+nav:
+    - Home: README.md
+    - Canvas: canvas.md
+    - VizElec: vizelec.md
+
+markdown_extensions:
+    - mkdocs-typer
