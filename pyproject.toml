@@ -4,7 +4,7 @@ version = "0.1.2"
 description = "Generate drawing and graph of schematic from various files."
 authors = ["Patarimi <38954040+Patarimi@users.noreply.github.com>"]
 license = "MIT"
-readme = "README.md"
+readme = "docs/README.md"
 
 
 [tool.poetry.scripts]
@@ -30,7 +30,6 @@ rich = "^13.4.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
-typer-cli = {git = "https://github.com/Patarimi/typer-cli.git"}
 poethepoet = "^0.24.0"
 pytest = "^7.3.0"
 mkdocs = "^1.5.3"
