@@ -197,17 +197,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="." class="md-nav__link md-nav__link--active">
         
   
@@ -217,73 +206,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#vizelec-pinout" class="md-nav__link">
-    <span class="md-ellipsis">
-      vizelec pinout
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="vizelec pinout">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vizelec-pinout-show" class="md-nav__link">
-    <span class="md-ellipsis">
-      vizelec pinout show
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vizelec-spice" class="md-nav__link">
-    <span class="md-ellipsis">
-      vizelec spice
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="vizelec spice">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vizelec-spice-load" class="md-nav__link">
-    <span class="md-ellipsis">
-      vizelec spice load
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -347,62 +269,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#vizelec-pinout" class="md-nav__link">
-    <span class="md-ellipsis">
-      vizelec pinout
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="vizelec pinout">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vizelec-pinout-show" class="md-nav__link">
-    <span class="md-ellipsis">
-      vizelec pinout show
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vizelec-spice" class="md-nav__link">
-    <span class="md-ellipsis">
-      vizelec spice
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="vizelec spice">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vizelec-spice-load" class="md-nav__link">
-    <span class="md-ellipsis">
-      vizelec spice load
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -417,72 +283,9 @@
 
 
 <h1 id="vizelec"><code>vizelec</code></h1>
-<p><strong>Usage</strong>:</p>
-<pre><code class="language-console">$ vizelec [OPTIONS] COMMAND [ARGS]...
-</code></pre>
-<p><strong>Options</strong>:</p>
-<ul>
-<li><code>--install-completion</code>: Install completion for the current shell.</li>
-<li><code>--show-completion</code>: Show completion for the current shell, to copy it or customize the installation.</li>
-<li><code>--help</code>: Show this message and exit.</li>
-</ul>
-<p><strong>Commands</strong>:</p>
-<ul>
-<li><code>pinout</code></li>
-<li><code>spice</code></li>
-</ul>
-<h2 id="vizelec-pinout"><code>vizelec pinout</code></h2>
-<p><strong>Usage</strong>:</p>
-<pre><code class="language-console">$ vizelec pinout [OPTIONS] COMMAND [ARGS]...
-</code></pre>
-<p><strong>Options</strong>:</p>
-<ul>
-<li><code>--help</code>: Show this message and exit.</li>
-</ul>
-<p><strong>Commands</strong>:</p>
-<ul>
-<li><code>show</code></li>
-</ul>
-<h3 id="vizelec-pinout-show"><code>vizelec pinout show</code></h3>
-<p><strong>Usage</strong>:</p>
-<pre><code class="language-console">$ vizelec pinout show [OPTIONS] CONF_FILE
-</code></pre>
-<p><strong>Arguments</strong>:</p>
-<ul>
-<li><code>CONF_FILE</code>: [required]</li>
-</ul>
-<p><strong>Options</strong>:</p>
-<ul>
-<li><code>--help</code>: Show this message and exit.</li>
-</ul>
-<h2 id="vizelec-spice"><code>vizelec spice</code></h2>
-<p><strong>Usage</strong>:</p>
-<pre><code class="language-console">$ vizelec spice [OPTIONS] COMMAND [ARGS]...
-</code></pre>
-<p><strong>Options</strong>:</p>
-<ul>
-<li><code>--help</code>: Show this message and exit.</li>
-</ul>
-<p><strong>Commands</strong>:</p>
-<ul>
-<li><code>load</code>: Create a graph representation of the...</li>
-</ul>
-<h3 id="vizelec-spice-load"><code>vizelec spice load</code></h3>
-<p>Create a graph representation of the schematic given by schem.
-:param schem: path to a spice file.
-:param show: display the netlist as a graph</p>
-<p><strong>Usage</strong>:</p>
-<pre><code class="language-console">$ vizelec spice load [OPTIONS] SCHEM
-</code></pre>
-<p><strong>Arguments</strong>:</p>
-<ul>
-<li><code>SCHEM</code>: [required]</li>
-</ul>
-<p><strong>Options</strong>:</p>
-<ul>
-<li><code>--show / --no-show</code>: [default: show]</li>
-<li><code>--help</code>: Show this message and exit.</li>
-</ul>
+<p>A python application to create vizualition based on electronical files.
+This is still a work in progress.</p>
+<p>Documentation can be found <a href="https://patarimi.github.io/vizelec/">here</a>.</p>
 
 
 
