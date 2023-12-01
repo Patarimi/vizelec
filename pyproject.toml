@@ -12,7 +12,7 @@ vizelec = "vizelec:main.cli"
 canvas = "vizelec:stick_draw.app"
 
 [tool.poe.tasks]
-doc         = "typer vizelec.main utils docs --name vizelec --output README.md"
+doc         = "mkdocs gh-deploy"
 show-update = "poetry show -l -o"
 publish     = "poetry publish --build --username __token__ --password $PYPI_TOKEN"
 increment   = ""
