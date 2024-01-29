@@ -33,7 +33,7 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
 poethepoet = "^0.24.0"
-pytest = "^7.3.0"
+pytest = ">=7.3,<9.0"
 mkdocs = "^1.5.3"
 mkdocs-typer = "^0.0.3"
 mkdocs-material = "^9.4.10"
