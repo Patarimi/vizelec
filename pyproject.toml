@@ -20,8 +20,8 @@ release     = ["doc", "publish"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-schemdraw = ">=0.17,<0.19"
-typer = ">=0.9,<0.11"
+schemdraw = "^0.18"
+typer = "^0.12.0"
 networkx = "^3.0"
 matplotlib = "^3.7.1"
 lark = "^1.1.5"
@@ -31,12 +31,12 @@ rich = "^13.4.1"
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-black = ">=23.1,<25.0"
-poethepoet = ">=0.24,<0.26"
-pytest = ">=7.3,<9.0"
+poethepoet = "^0.25.0"
+pytest = "^8.0.0"
 mkdocs = "^1.5.3"
 mkdocs-typer = "^0.0.3"
 mkdocs-material = "^9.4.10"
+ruff = "^0.3.5"
 
 [build-system]
 requires = ["poetry-core"]

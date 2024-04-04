@@ -22,7 +22,9 @@ class Canvas:
             Rectangle(origin, width, height, facecolor=color, fill="True")
         )
 
-    def draw_mos(self, mos: dict, offset: tuple[float, float] = (0, 0), doping: str = "n"):
+    def draw_mos(
+        self, mos: dict, offset: tuple[float, float] = (0, 0), doping: str = "n"
+    ):
         color = "green" if doping == "n" else "yellow"
         self.new_rect(
             (offset[0], offset[1] + mos["poly"]["ext"]),
@@ -82,16 +84,18 @@ def draw_canvas(n_well_n, n_well_p, finger, h_well_n, h_well_p):
         doping="p",
     )
     plt.xlim(
-        -margin+0.25,
+        -margin + 0.25,
         nmos["finger"] * nmos["x"]
         + (nmos["finger"] + 1) * nmos["active"]["ext"]
-        + margin + 0.25,
+        + margin
+        + 0.25,
     )
     plt.ylim(
-        -margin+1,
+        -margin + 1,
         well["n"] * (nmos["y"] + 2 * nmos["poly"]["ext"])
         + (well["n"] - 1) * well["space"]
-        + margin+1,
+        + margin
+        + 1,
     )
     canvas.add_wire(2, (4, 6))
     canvas.add_wire(1, (0, 2))
