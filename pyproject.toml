@@ -1,13 +1,21 @@
-[tool.poetry]
+[project]
 name = "vizelec"
 version = "0.1.2"
 description = "Generate drawing and graph of schematic from various files."
-authors = ["Patarimi <38954040+Patarimi@users.noreply.github.com>"]
+authors = [{name="Patarimi", email="38954040+Patarimi@users.noreply.github.com"}]
 license = "MIT"
 readme = "docs/README.md"
+requires-python = ">3.10"
+dependencies = [
+    "schemdraw (>0.18)",
+    "typer (>0.12.0)",
+    "networkx (>3.0)",
+    "matplotlib (>3.7.1)",
+    "lark (>1.1.5)",
+    "rich (>13.4.1)"]
 
 
-[tool.poetry.scripts]
+[project.scripts]
 vizelec = "vizelec:main.cli"
 canvas = "vizelec:stick_draw.app"
 
@@ -17,15 +25,6 @@ show-update = "poetry show -l -o"
 publish     = "poetry publish --build --username __token__ --password $PYPI_TOKEN"
 increment   = ""
 release     = ["doc", "publish"]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-schemdraw = "^0.18"
-typer = "^0.12.0"
-networkx = "^3.0"
-matplotlib = "^3.7.1"
-lark = "^1.1.5"
-rich = "^13.4.1"
 
 [tool.poetry.group.dev]
 optional = true
