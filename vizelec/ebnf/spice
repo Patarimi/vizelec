@@ -1,22 +1,31 @@
-start: (component | instr)+
+start: title? (component | instr)+
 
-component: "V" NAME SEP NET SEP NET SEP (TYPE SEP?)+ -> v_source
-    |"M" NAME SEP NET SEP NET SEP NET SEP NET SEP MODEL (SEP MODEL_PARAMETER)+ SEP -> mos
+title : (CMT_NAME " ")+ CMT_NAME? "\n"+ -> title
+component: ("V"|"v") NAME _SEP NET _SEP NET _SEP (TYPE _SEP?)+ -> v_source
+    |"M" NAME (_SEP NET)~4 _SEP MODEL (_SEP MODEL_PARAMETER)+ _SEP -> mos
+    |"q" NAME (_SEP NET)~3 _SEP MODEL _SEP -> bipolar
+    |"r" NAME (_SEP NET)~2 _SEP VALUE _SEP -> resistor
 
-instr: ".model" SEP NAME SEP NAME SEP (MODEL_PARAMETER SEP?)+ -> model
 
-SEP: (" "|"\n")+
+instr: ".model" _SEP NAME _SEP NAME _SEP? "("? (MODEL_PARAMETER _SEP?)+ ")"? _SEP?-> model
+    | ".sens" " " CMT_NAME _SEP
+    | ".tf" (" " CMT_NAME)+ _SEP
+    | ".end" _SEP
+
+_SEP: (" "|"\n")+
 NAME: (LETTER|INT)+
 NET: (INT|LETTER)+
-VALUE: (INT|".")+ UNIT?
-UNIT: ("n"|"u")
+VALUE: "-"? (INT|".")+ UNIT?
+UNIT: ("n"|"u"|"f"|"p"|"k"|"meg") ("f"|"s")?
 TYPE: VALUE
-    |"dc" SEP VALUE
-    |"pulse" SEP "(" (VALUE SEP?)+ ")"
+    |"dc" _SEP VALUE
+    |"pulse" _SEP "(" (VALUE _SEP?)+ ")"
+    |"sin" _SEP? "(" (VALUE _SEP?)+ ")"
+    |"ac" _SEP VALUE
 MODEL: NAME
 MODEL_PARAMETER: NAME "=" VALUE
-COMMENT: ("i"|"*") (" " CMT_NAME)+ SEP+
-CMT_NAME: (LETTER|"."|"-"|"("|")"|INT)+
+COMMENT: ("i"|"*") (" " CMT_NAME)+ _SEP+
+CMT_NAME: (LETTER|"."|"-"|"("|")"|INT|":"|"/"|",")+
 %ignore COMMENT
 %import common.LETTER
 %import common.INT
