@@ -8,7 +8,7 @@ from .parse import parse
 app = typer.Typer()
 
 mos_port = {"drain": 0, "gate": 1, "source": 2}
-
+letters = {'bipolar': "Q", 'resistor': "R", "mos":"M"}
 
 @app.command("load")
 def load_spice(schem: str, show: bool = True) -> None:
@@ -20,12 +20,19 @@ def load_spice(schem: str, show: bool = True) -> None:
     netlist = nx.Graph()
     tree = parse(schem)
     for thing in tree.children:
-        if thing.data in ("model", "v_source"):
+        if thing.data in ("model", "v_source", "title", "instr"):
             continue
-        name = thing.children[0]
-        nets = thing.children[2:7:2]
+        name = letters[thing.data] + thing.children[0]
+        nets = list()
+        for t in thing.children:
+            if t.type == "NET":
+                nets.append(t.value)
+        print(f"adding {name} at {nets}")
         add_cmp(netlist, name, nets)
-    nx.draw_spring(netlist, with_labels=True)
+    pos = nx.spring_layout(netlist)
+    cmp_list = [n for n in netlist.nodes if netlist.nodes[n]['type'] == "cmp"]
+    nx.draw_networkx(netlist, pos, with_labels=True)
+    nx.draw_networkx_nodes(netlist, pos, nodelist=cmp_list, node_color="tab:red")
     if show:
         plt.show()
 
@@ -37,9 +44,9 @@ def add_cmp(graph: nx.Graph, cmp_name: str, ports_lst: list[str]) -> None:
     :param cmp_name: name of the component
     :param graph: graph to be updated
     """
-    graph.add_node(cmp_name, type="cmp", style="red")
+    graph.add_node(cmp_name, type="cmp", node_color="tab:red")
     for net in ports_lst:
-        graph.add_node(net, type="net", style="blue")
+        graph.add_node(net, type="net", node_color="tab:blue")
         graph.add_edge(net, cmp_name)
 
 
