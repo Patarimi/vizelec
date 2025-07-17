@@ -10,6 +10,7 @@ app = typer.Typer()
 mos_port = {"drain": 0, "gate": 1, "source": 2}
 letters = {"bipolar": "Q", "resistor": "R", "mos": "M"}
 
+
 @app.command("load")
 def load_spice(schem: str, show: bool = True) -> None:
     """
