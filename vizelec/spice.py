@@ -8,7 +8,8 @@ from .parse import parse
 app = typer.Typer()
 
 mos_port = {"drain": 0, "gate": 1, "source": 2}
-letters = {'bipolar': "Q", 'resistor': "R", "mos":"M"}
+letters = {"bipolar": "Q", "resistor": "R", "mos": "M"}
+
 
 @app.command("load")
 def load_spice(schem: str, show: bool = True) -> None:
@@ -30,7 +31,7 @@ def load_spice(schem: str, show: bool = True) -> None:
         print(f"adding {name} at {nets}")
         add_cmp(netlist, name, nets)
     pos = nx.spring_layout(netlist)
-    cmp_list = [n for n in netlist.nodes if netlist.nodes[n]['type'] == "cmp"]
+    cmp_list = [n for n in netlist.nodes if netlist.nodes[n]["type"] == "cmp"]
     nx.draw_networkx(netlist, pos, with_labels=True)
     nx.draw_networkx_nodes(netlist, pos, nodelist=cmp_list, node_color="tab:red")
     if show:
