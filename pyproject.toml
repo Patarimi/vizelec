@@ -36,7 +36,7 @@ pytest = "^9.0.1"
 mkdocs = "^1.5.3"
 mkdocs-typer = "^0.0.3"
 mkdocs-material = "^9.6.23"
-ruff = "^0.14.4"
+ruff = "^0.14.6"
 
 [build-system]
 requires = ["poetry-core"]
