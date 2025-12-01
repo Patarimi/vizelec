@@ -1420,14 +1420,14 @@ files = [
 
 [[package]]
 name = "schemdraw"
-version = "0.21"
+version = "0.22"
 description = "Electrical circuit schematic drawing"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "schemdraw-0.21-py3-none-any.whl", hash = "sha256:b5bee2fa63e7a876dfd7478bcc7131325ead2bf7769056ee3e7873a57d799bd5"},
-    {file = "schemdraw-0.21.tar.gz", hash = "sha256:6127b28d8fe0a8c78d37aa2dff93c1d39f18da84e59172f865b8fbd7664af386"},
+    {file = "schemdraw-0.22-py3-none-any.whl", hash = "sha256:fb294fe086b89a7dc9bedce43dc39014a9b9e369864eab438f22009c9f0e1175"},
+    {file = "schemdraw-0.22.tar.gz", hash = "sha256:59d1fcfe817f93f8bfc37a3f4645186dc03316bbcfd9ac68804fd6cb3aa69f51"},
 ]
 
 [package.extras]
