@@ -35,7 +35,7 @@ poethepoet = "^0.38.0"
 pytest = "^9.0.2"
 mkdocs = "^1.5.3"
 mkdocs-typer = "^0.0.3"
-mkdocs-material = "^9.7.0"
+mkdocs-material = "^9.7.1"
 ruff = "^0.14.10"
 
 [build-system]
